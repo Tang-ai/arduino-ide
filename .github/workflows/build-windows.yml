@@ -116,9 +116,7 @@ jobs:
       - name: Determine the type of build
         id: determination
         run: |
-          if [[
-            "${{ startsWith(github.ref, 'refs/tags/') }}"
-          ]]; then
+          if [[ "${{ startsWith(github.ref, 'refs/tags/') }}" == "true" ]]; then
             is_release="true"
             is_nightly="false"
             channel_name="stable"
