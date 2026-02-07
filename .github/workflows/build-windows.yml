@@ -184,6 +184,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.yarn/cache
+            ~/.yarn/unplugged
+            ~/.yarn/build-state.yml
+            ~/.yarn/install-state.gz
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -206,6 +218,16 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11.x'
+
+      - name: Cache Go dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+          key: ${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('**/go.sum', '**/go.mod') }}
+          restore-keys: |
+            ${{ runner.os }}-go-${{ env.GO_VERSION }}-
 
       - name: Install Go
         uses: actions/setup-go@v5
