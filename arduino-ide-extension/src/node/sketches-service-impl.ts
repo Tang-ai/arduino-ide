@@ -673,7 +673,13 @@ export class SketchesServiceImpl
 
     let basePath: string;
     try {
-      basePath = userCacheDir();
+      // Check if custom build path is set in preferences
+      const settings = await this.settingsReader.read();
+      if (settings && settings['arduino.build.path'] && typeof settings['arduino.build.path'] === 'string') {
+        basePath = settings['arduino.build.path'];
+      } else {
+        basePath = userCacheDir();
+      }
     } catch {
       // Fallback to /tmp
       const { tempDirRealpath } = this.isTempSketch;

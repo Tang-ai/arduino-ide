@@ -315,6 +315,14 @@ const properties: ArduinoPreferenceSchemaProperties = {
     ),
     default: defaultMonitorWidgetDockPanel,
   },
+  'arduino.build.path': {
+    type: 'string',
+    markdownDescription: nls.localize(
+      'arduino/preferences/build/path',
+      'Absolute filesystem path to the build directory. If specified, the IDE will use this directory for all build operations. The default system cache directory will be used if not specified. **A restart of the IDE is needed** for this setting to take effect.'
+    ),
+    default: undefined,
+  },
 };
 export const ArduinoConfigSchema: PreferenceSchema = {
   type: 'object',
@@ -351,6 +359,7 @@ export interface ArduinoConfiguration {
   'arduino.sketch.inoBlueprint': string;
   'arduino.checkForUpdates': boolean;
   'arduino.monitor.dockPanel': MonitorWidgetDockPanel;
+  'arduino.build.path': string;
 }
 
 export const ArduinoPreferences = Symbol('ArduinoPreferences');
