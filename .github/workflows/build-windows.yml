@@ -182,7 +182,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Cache Yarn dependencies
         uses: actions/cache@v4
@@ -314,7 +314,7 @@ jobs:
       BODY: ${{ steps.changelog.outputs.BODY }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0 # To fetch all history for all branches and tags.
 
