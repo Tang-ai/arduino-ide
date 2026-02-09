@@ -294,7 +294,7 @@ jobs:
 
     steps:
       - name: Download job transfer artifact that contains ${{ matrix.artifact.name }} tester build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: ${{ env.JOB_TRANSFER_ARTIFACT_PREFIX }}${{ matrix.artifact.job-transfer-artifact-suffix }}
           path: ${{ env.BUILD_ARTIFACTS_FOLDER }}
@@ -376,7 +376,7 @@ jobs:
 
     steps:
       - name: Download all job transfer artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           merge-multiple: true
           path: ${{ env.ARTIFACTS_FOLDER }}
@@ -414,7 +414,7 @@ jobs:
 
     steps:
       - name: Download all job transfer artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           merge-multiple: true
           path: ${{ env.ARTIFACTS_FOLDER }}
